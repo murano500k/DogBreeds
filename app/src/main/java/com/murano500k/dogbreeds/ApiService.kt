@@ -1,9 +1,8 @@
 package com.murano500k.dogbreeds
 
-import com.murano500k.dogbreeds.model.DogBreed
-import com.murano500k.dogbreeds.model.ResponceSingleImage
-import okhttp3.Response
-import retrofit2.Call
+import com.google.gson.JsonObject
+import com.murano500k.dogbreeds.model.ResponseMultipleImages
+import com.murano500k.dogbreeds.model.ResponseSingleImage
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -13,11 +12,20 @@ interface ApiService {
     }
 
     @GET("breeds/list/all")
-    suspend fun getAllBreeds(): Call<DogBreed>
+    suspend fun getAllBreeds(): JsonObject
 
     @GET("breed/{breed}/images/random")
-    suspend fun getBreedRandomImage(@Path("breed") breed : String): ResponceSingleImage
-/*
+    suspend fun getBreedRandomImage(@Path("breed") breed : String): ResponseSingleImage
+
+
+    @GET("breed/{breed}/{subbreed}/images/random")
+    suspend fun getSubbreedRandomImage(@Path("breed") breed : String,
+                                       @Path("subbreed") subbreed : String): ResponseSingleImage
+
     @GET("breed/{breed}/images")
-    suspend fun getBreedImages(@Path("breed") breed: String): Call*/
+    suspend fun getAllBreedImages(@Path("breed") breed: String): ResponseMultipleImages
+
+    @GET("breed/{breed}/{subbreed}/images")
+    suspend fun getAllSubbreedImages(@Path("breed") breed : String,
+                                       @Path("subbreed") subbreed : String): ResponseMultipleImages
 }

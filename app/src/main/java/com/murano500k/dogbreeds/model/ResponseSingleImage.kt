@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class ResponceSingleImage(
+data class ResponseSingleImage(
     @Json(name = "message")
     val message: String = "",
     @Json(name = "status")
