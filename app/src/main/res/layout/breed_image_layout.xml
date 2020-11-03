@@ -12,9 +12,8 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:setImageUrl="@{dogBreed.imageUrl}"
-        app:srcCompat="@drawable/ic_baseline_broken_image_24" />
+        android:scaleType="centerCrop"
+        android:layout_margin="1dp"
+        />
 </layout>

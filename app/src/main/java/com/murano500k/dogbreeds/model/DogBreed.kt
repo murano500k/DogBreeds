@@ -23,6 +23,7 @@ data class DogBreed(@PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") va
 
     fun getApiParam(): String {
         Log.w(TAG, "getApiParam: $breed/$subbreed" )
+
         return if(subbreed.isEmpty()) breed
         else "$breed/$subbreed"
     }

@@ -41,7 +41,15 @@ fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
             flexDirection = FlexDirection.ROW
             alignItems = AlignItems.STRETCH
         }*/
-        this.layoutManager = LinearLayoutManager(context)
+        this.layoutManager = FlexboxLayoutManager(context).apply {
+            flexWrap = FlexWrap.WRAP
+            flexDirection = FlexDirection.ROW
+            //alignItems = AlignItems.STRETCH
+            justifyContent = JustifyContent.SPACE_EVENLY
+
+        }
+
+        //this.layoutManager = LinearLayoutManager(context)
         this.adapter = adapter
     }
 }

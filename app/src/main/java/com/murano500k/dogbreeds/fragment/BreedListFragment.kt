@@ -26,15 +26,6 @@ class BreedListFragment : Fragment() {
     @VisibleForTesting
     private val breedsViewModel: ListBreedsViewModel by viewModels()
 
-/*
-    private val binding by lazy {
-        DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main).run {
-            lifecycleOwner = this@MainActivity
-            viewModel = userViewModel
-        }
-    }*/
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,7 +40,6 @@ class BreedListFragment : Fragment() {
             adapter.addDogBreedList(it)
             binding.adapter=adapter
         })
-        breedsViewModel.breedsFromApi()
         return binding.root
     }
 

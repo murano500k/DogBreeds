@@ -35,16 +35,4 @@ fun bindAdapterDogBreedList(view: RecyclerView, dogBreedList: List<DogBreed>?) {
     }
 }
 
-@BindingAdapter("imageUrl")
-fun setImageUrl(imgView: ImageView, imgUrl: String){
-    if(!imgUrl.isNullOrEmpty()) {
-                Glide.with(imgView.context)
-                        .load(imgUrl)
-                        .apply(
-                                RequestOptions()
-                                        .placeholder(R.drawable.ic_baseline_hourglass_empty_24)
-                                        .error(R.drawable.ic_baseline_broken_image_24))
-                        .into(imgView)
-            }
-}
 
