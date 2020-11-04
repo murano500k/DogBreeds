@@ -7,8 +7,8 @@
     <fragment
         android:id="@+id/listFragment"
         android:name="com.murano500k.dogbreeds.fragment.BreedListFragment"
-        android:label="fragment_list"
-        tools:layout="@layout/fragment_list" >
+        android:label="All breeds"
+        tools:layout="@layout/fragment_list_breeds" >
         <action
             android:id="@+id/action_listFragment_to_breedImagesFragment"
             app:destination="@id/breedImagesFragment"
@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/breedImagesFragment"
         android:name="com.murano500k.dogbreeds.fragment.BreedImagesFragment"
-        android:label="fragment_breed_images"
+        android:label="Breed images"
         tools:layout="@layout/fragment_breed_images" >
         <action
             android:id="@+id/action_breedImagesFragment_to_singleImageFragment"
@@ -29,6 +29,6 @@
     <fragment
         android:id="@+id/singleImageFragment"
         android:name="com.murano500k.dogbreeds.fragment.SingleImageFragment"
-        android:label="fragment_single_image"
+        android:label="Single image"
         tools:layout="@layout/fragment_single_image" />
 </navigation>

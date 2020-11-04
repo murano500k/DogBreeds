@@ -25,8 +25,13 @@ class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
+        println("test")
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.murano500k.dogbreeds", appContext.packageName)
 
     }
+
+
+
+
 }

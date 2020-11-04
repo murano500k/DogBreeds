@@ -10,10 +10,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.murano500k.dogbreeds.DogBreedAdapter
+import com.murano500k.dogbreeds.BreedListAdapter
 import com.murano500k.dogbreeds.R
 import com.murano500k.dogbreeds.TAG
-import com.murano500k.dogbreeds.databinding.FragmentListBinding
+import com.murano500k.dogbreeds.databinding.FragmentListBreedsBinding
 import com.murano500k.dogbreeds.viewmodel.ListBreedsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.scopes.FragmentScoped
@@ -34,14 +34,14 @@ class BreedListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Log.v(TAG, "onCreateView: ")
-        val binding: FragmentListBinding = DataBindingUtil.inflate(
+        val binding: FragmentListBreedsBinding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_list, container, false
+            R.layout.fragment_list_breeds, container, false
         )
         binding.vm = breedsViewModel
-        binding.adapter = DogBreedAdapter()
+        binding.adapter = BreedListAdapter()
         breedsViewModel.listBreedsLiveData.observe(viewLifecycleOwner, Observer {
-            val adapter = DogBreedAdapter()
+            val adapter = BreedListAdapter()
             adapter.addDogBreedList(it)
             binding.adapter = adapter
         })

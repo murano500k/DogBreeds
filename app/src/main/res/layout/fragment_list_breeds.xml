@@ -11,7 +11,7 @@
 
         <variable
             name="adapter"
-            type="com.murano500k.dogbreeds.DogBreedAdapter" />
+            type="com.murano500k.dogbreeds.BreedListAdapter" />
 
     </data>
 
@@ -29,7 +29,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/list_item_layout"
+            tools:listitem="@layout/breed_item_with_label"
             android:clipToPadding="false"
             android:fadeScrollbars="false"
             android:padding="6dp"
