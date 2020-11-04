@@ -1,6 +1,7 @@
 package com.murano500k.dogbreeds.binding
 
 import android.annotation.SuppressLint
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -12,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.flexbox.*
 import com.murano500k.dogbreeds.R
+import com.murano500k.dogbreeds.gone
 import com.murano500k.dogbreeds.viewmodel.LoadingState
 
 
@@ -19,8 +21,6 @@ import com.murano500k.dogbreeds.viewmodel.LoadingState
 @BindingAdapter(value = ["setImageUrl"])
 fun ImageView.bindImageUrl(url: String?) {
     if (url != null && url.isNotBlank()) {
-
-
         Glide.with(context)
             .load(url)
             .apply(
@@ -32,24 +32,15 @@ fun ImageView.bindImageUrl(url: String?) {
     }
 }
 
+
 @BindingAdapter(value = ["setAdapter"])
 fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
     this.run {
-        //this.setHasFixedSize(true)
-        /*this.layoutManager = FlexboxLayoutManager(context).apply {
-            flexWrap = FlexWrap.WRAP
-            flexDirection = FlexDirection.ROW
-            alignItems = AlignItems.STRETCH
-        }*/
         this.layoutManager = FlexboxLayoutManager(context).apply {
             flexWrap = FlexWrap.WRAP
             flexDirection = FlexDirection.ROW
-            //alignItems = AlignItems.STRETCH
             justifyContent = JustifyContent.SPACE_EVENLY
-
         }
-
-        //this.layoutManager = LinearLayoutManager(context)
         this.adapter = adapter
     }
 }
@@ -63,4 +54,9 @@ fun ProgressBar.progressVisibility(loadingState: LoadingState?) {
             LoadingState.Status.FAILED -> false
         }
     }
+}
+
+@BindingAdapter("gone")
+fun bindGone(view: View, shouldBeGone: Boolean) {
+    view.gone(shouldBeGone)
 }
