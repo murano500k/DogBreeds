@@ -35,7 +35,7 @@ class MainRepository @Inject constructor(
         return dogBreeds
     }
 
-    private suspend fun fetchRandomBreedImageUrl(dogBreed: DogBreed): String{
+    suspend fun fetchRandomBreedImageUrl(dogBreed: DogBreed): String{
         val responseSingleImage =
             if(dogBreed.subbreed.isEmpty()) apiService.getBreedRandomImage(dogBreed.breed)
             else apiService.getSubbreedRandomImage(dogBreed.breed, dogBreed.subbreed)

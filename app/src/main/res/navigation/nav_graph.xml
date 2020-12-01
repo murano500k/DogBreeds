@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.murano500k.dogbreeds.fragment.BreedListFragment"
+        android:name="com.murano500k.dogbreeds.fragment.ContinuousBreedListFigment"
         android:label="All breeds"
         tools:layout="@layout/fragment_list_breeds" >
         <action

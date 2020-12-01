@@ -10,19 +10,6 @@ import com.murano500k.dogbreeds.model.DogBreed
 fun bindAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
   view.adapter = adapter
 }
-/*
-@BindingAdapter("paginationPokemonList")
-fun paginationPokemonList(view: RecyclerView, viewModel: MainViewModel) {
-  RecyclerViewPaginator(
-    recyclerView = view,
-    isLoading = { viewModel.isLoading.get() },
-    loadMore = { viewModel.fetchPokemonList(it) },
-    onLast = { false }
-  ).run {
-    threshold = 8
-  }
-}
-*/
 @BindingAdapter("adapterDogBreedList")
 fun bindAdapterDogBreedList(view: RecyclerView, dogBreedList: List<DogBreed>?) {
     Log.w("TAG", "bindAdapterPokemonList: ${dogBreedList?.size}" )

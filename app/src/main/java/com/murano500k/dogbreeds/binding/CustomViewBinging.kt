@@ -35,12 +35,7 @@ fun ImageView.bindImageUrl(url: String?) {
 @BindingAdapter(value = ["setAdapter"])
 fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
     this.run {
-        //this.setHasFixedSize(true)
-        /*this.layoutManager = FlexboxLayoutManager(context).apply {
-            flexWrap = FlexWrap.WRAP
-            flexDirection = FlexDirection.ROW
-            alignItems = AlignItems.STRETCH
-        }*/
+
         this.layoutManager = FlexboxLayoutManager(context).apply {
             flexWrap = FlexWrap.WRAP
             flexDirection = FlexDirection.ROW
@@ -48,8 +43,6 @@ fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
             justifyContent = JustifyContent.SPACE_EVENLY
 
         }
-
-        //this.layoutManager = LinearLayoutManager(context)
         this.adapter = adapter
     }
 }

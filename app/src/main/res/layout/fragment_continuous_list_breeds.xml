@@ -11,7 +11,7 @@
 
         <variable
             name="adapter"
-            type="com.murano500k.dogbreeds.BreedListAdapter" />
+            type="com.murano500k.dogbreeds.ContinuousBreedListAdapter" />
 
     </data>
 
