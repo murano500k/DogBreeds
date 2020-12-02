@@ -8,9 +8,6 @@
             name="dogBreed"
             type="com.murano500k.dogbreeds.model.DogBreed" />
 
-        <variable
-            name="viewModel"
-            type="com.murano500k.dogbreeds.viewmodel.ListBreedsViewModel" />
     </data>
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"

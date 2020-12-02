@@ -1,6 +1,7 @@
 package com.murano500k.dogbreeds.binding
 
 import android.annotation.SuppressLint
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -12,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.flexbox.*
 import com.murano500k.dogbreeds.R
+import com.murano500k.dogbreeds.gone
 import com.murano500k.dogbreeds.viewmodel.LoadingState
 
 
@@ -23,14 +25,23 @@ fun ImageView.bindImageUrl(url: String?) {
 
         Glide.with(context)
             .load(url)
+            .centerCrop()
             .apply(
                 RequestOptions()
+
                     .placeholder(R.drawable.ic_baseline_hourglass_empty_24)
                     .error(R.drawable.ic_baseline_broken_image_24)
             )
             .into(this)
     }
 }
+
+
+@BindingAdapter("adapter")
+fun bindAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
+    view.adapter = adapter
+}
+
 
 @BindingAdapter(value = ["setAdapter"])
 fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
@@ -56,4 +67,8 @@ fun ProgressBar.progressVisibility(loadingState: LoadingState?) {
             LoadingState.Status.FAILED -> false
         }
     }
+}
+@BindingAdapter("gone")
+fun bindGone(view: View, shouldBeGone: Boolean) {
+    view.gone(shouldBeGone)
 }

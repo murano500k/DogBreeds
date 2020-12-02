@@ -8,22 +8,21 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexboxLayoutManager
-import com.murano500k.dogbreeds.databinding.BreedImageLayoutBinding
+import com.murano500k.dogbreeds.databinding.BreedImageNoLabelBinding
+
 import com.murano500k.dogbreeds.fragment.BreedImagesFragment
 import com.murano500k.dogbreeds.model.DogBreed
+import com.murano500k.dogbreeds.utils.DogDiffCallback
 
-class BreedImagesAdapter : ListAdapter<DogBreed, BreedImagesAdapter.BreedImagesViewHolder>(Companion) {
+class BreedImagesAdapter : ListAdapter<DogBreed, BreedImagesAdapter.BreedImagesViewHolder>(
+    DogDiffCallback()
+) {
 
-    class BreedImagesViewHolder(val binding: BreedImageLayoutBinding) : RecyclerView.ViewHolder(binding.root)
-
-    companion object: DiffUtil.ItemCallback<DogBreed>() {
-        override fun areItemsTheSame(oldItem: DogBreed, newItem: DogBreed): Boolean = oldItem === newItem
-        override fun areContentsTheSame(oldItem: DogBreed, newItem: DogBreed): Boolean = oldItem.id == newItem.id
-    }
+    class BreedImagesViewHolder(val binding: BreedImageNoLabelBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BreedImagesViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = BreedImageLayoutBinding.inflate(layoutInflater)
+        val binding = BreedImageNoLabelBinding.inflate(layoutInflater)
         return BreedImagesViewHolder(binding).apply {
             binding.root.setOnClickListener {
                 val position = adapterPosition.takeIf { it != RecyclerView.NO_POSITION }

@@ -14,38 +14,41 @@ import com.murano500k.dogbreeds.BreedListAdapter
 import com.murano500k.dogbreeds.R
 import com.murano500k.dogbreeds.TAG
 import com.murano500k.dogbreeds.databinding.FragmentListBreedsBinding
-import com.murano500k.dogbreeds.viewmodel.ContinuousListBreedsViewModel
 import com.murano500k.dogbreeds.viewmodel.ListBreedsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.scopes.FragmentScoped
 
 @AndroidEntryPoint
 @FragmentScoped
-class BreedListFragment : Fragment() {
+class BreedListFigment : Fragment() {
 
     @VisibleForTesting
-    private val breedsViewModel: ContinuousListBreedsViewModel by viewModels()
+    private val breedsViewModel: ListBreedsViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+
+    private lateinit var breedListAdapter: BreedListAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         Log.v(TAG, "onCreateView: ")
         val binding: FragmentListBreedsBinding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_list_breeds, container, false
+                inflater,
+                R.layout.fragment_list_breeds, container, false
         )
         binding.vm = breedsViewModel
-        binding.adapter = BreedListAdapter()
+        breedListAdapter = BreedListAdapter()
+        binding.adapter = breedListAdapter
         breedsViewModel.listBreedsLiveData.observe(viewLifecycleOwner, Observer {
-            val adapter = BreedListAdapter()
-            adapter.addDogBreedList(it)
-            binding.adapter = adapter
+            //val adapter = ContinuousBreedListAdapter(breedsViewModel)
+            Log.w(TAG, "submitList"+it.size )
+            //diffUtilBreedListAdapter.submitList(null);
+            breedListAdapter.submitList(it.toMutableList())
+            //diffUtilBreedListAdapter.notifyDataSetChanged()
+            //continuousBreedListAdapter.addDogBreedList(it)
+            //binding.adapter = adapter
         })
-        return binding.root
+            return binding.root
     }
 }

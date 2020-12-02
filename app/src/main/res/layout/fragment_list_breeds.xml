@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.murano500k.dogbreeds.viewmodel.ContinuousListBreedsViewModel" />
+            type="com.murano500k.dogbreeds.viewmodel.ListBreedsViewModel" />
 
         <variable
             name="adapter"
@@ -18,7 +18,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragment.BreedListFragment">
+        tools:context=".fragment.ContinuousBreedListFragment">
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -39,7 +39,6 @@
             app:adapter="@{adapter}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
-            app:adapterDogBreedList="@{vm.listBreedsLiveData}"
             />
 
         <ProgressBar
