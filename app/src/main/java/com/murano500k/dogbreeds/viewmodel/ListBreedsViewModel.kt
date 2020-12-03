@@ -23,16 +23,13 @@ class ListBreedsViewModel @ViewModelInject constructor(
 
     init {
         Log.w(TAG, "init: ", )
-
         viewModelScope.launch(Dispatchers.IO){
             Log.w(TAG, "launch: ", )
-            mainRepository.fetchDogBreedsListSimple().forEach{breed ->
-                breed.imageUrl = mainRepository.fetchRandomBreedImageUrl(breed)
-                listBreeds.add(breed)
-                listBreedsLiveData.postValue(listBreeds)
-            }
+            mainRepository.fetchUpdatedDogBreedsList()
         }
     }
+
+    var listBreedsLiveDataFromDb = mainRepository.getListBreedsLiveData()
 
 
 }

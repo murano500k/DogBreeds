@@ -40,15 +40,9 @@ class BreedListFigment : Fragment() {
         binding.vm = breedsViewModel
         breedListAdapter = BreedListAdapter()
         binding.adapter = breedListAdapter
-        breedsViewModel.listBreedsLiveData.observe(viewLifecycleOwner, Observer {
-            //val adapter = ContinuousBreedListAdapter(breedsViewModel)
-            Log.w(TAG, "submitList"+it.size )
-            //diffUtilBreedListAdapter.submitList(null);
-            breedListAdapter.submitList(it.toMutableList())
-            //diffUtilBreedListAdapter.notifyDataSetChanged()
-            //continuousBreedListAdapter.addDogBreedList(it)
-            //binding.adapter = adapter
+        breedsViewModel.listBreedsLiveDataFromDb.observe(viewLifecycleOwner, Observer {
+            breedListAdapter.submitList(it)
         })
-            return binding.root
+        return binding.root
     }
 }

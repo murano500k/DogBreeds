@@ -18,6 +18,19 @@ class MainRepository @Inject constructor(
     private val dogBreedDao: DogBreedDao
 )  {
 
+    fun getListBreedsLiveData() = dogBreedDao.getDogBreedListLiveData()
+
+    suspend fun fetchUpdatedDogBreedsList(){
+        if(dogBreedDao.getDogBreedList().isEmpty()){
+            dogBreedDao.insertDogBreedList(parseListBreeds(apiService.getAllBreeds()))
+        }
+        dogBreedDao.getDogBreedList().forEach{
+            it.imageUrl = fetchRandomBreedImageUrl(it)
+            dogBreedDao.insertDogBreed(it)
+        }
+    }
+
+
     suspend fun fetchDogBreedsListSimple(): List<DogBreed>{
         var dogBreeds = dogBreedDao.getDogBreedList()
         Log.w(TAG, "fetchDogBreedList: dogBreeds.size = ${dogBreeds.size}", )
