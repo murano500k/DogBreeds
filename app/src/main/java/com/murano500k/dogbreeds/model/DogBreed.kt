@@ -12,19 +12,15 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = "breed_table")
 data class DogBreed(@PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") val id: Int,
                     @ColumnInfo(name = "breed") val breed: String,
-                    @ColumnInfo(name = "subbreed") var subbreed : String,
                     @ColumnInfo(name = "imageUrl") var imageUrl : String
 ) : Parcelable {
 
 
     override fun toString(): String {
-        return "$subbreed $breed"
+        return if(breed.contains("/")){
+            val array = breed.split("/")
+            "${array[1]} ${array[0]}"
+        }else breed
     }
 
-    fun getApiParam(): String {
-        Log.w(TAG, "getApiParam: $breed/$subbreed" )
-
-        return if(subbreed.isEmpty()) breed
-        else "$breed/$subbreed"
-    }
 }

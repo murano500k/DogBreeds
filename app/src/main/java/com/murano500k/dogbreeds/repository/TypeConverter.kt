@@ -16,17 +16,18 @@ class TypeConverter {
                 //Log.w(TAG, "parseListSubbreeds: ${subbreeds.size()}" )
                 if(subbreeds.size()>0){
                     subbreeds.forEach{ subbreed ->
-                        //Log.w(TAG, "        subbreed: $subbreed" )
-                        subbreed.asString
-                        list.add(DogBreed(0, breed,subbreed.asString,""))
+
+                        val fullBreedName = "$breed/${subbreed.asString}"
+                        Log.w(TAG, "        fullBreedName: $fullBreedName" )
+                        list.add(DogBreed(0, fullBreedName,""))
                     }
                 }else{
-                    list.add(DogBreed(0, breed, "", ""))
+                    list.add(DogBreed(0, breed, ""))
                 }
 
             }
             list.forEach{
-                Log.w(TAG, "parseListBreeds: ${it.breed} ${it.subbreed}" )
+                Log.w(TAG, "parseListBreeds: ${it.breed}" )
             }
             return list
         }

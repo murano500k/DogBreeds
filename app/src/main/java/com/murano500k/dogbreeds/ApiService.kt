@@ -15,17 +15,9 @@ interface ApiService {
     suspend fun getAllBreeds(): JsonObject
 
     @GET("breed/{breed}/images/random")
-    suspend fun getBreedRandomImage(@Path("breed") breed : String): ResponseSingleImage
-
-
-    @GET("breed/{breed}/{subbreed}/images/random")
-    suspend fun getSubbreedRandomImage(@Path("breed") breed : String,
-                                       @Path("subbreed") subbreed : String): ResponseSingleImage
+    suspend fun getBreedRandomImage(@Path(value = "breed",encoded = true) breed : String): ResponseSingleImage
 
     @GET("breed/{breed}/images")
-    suspend fun getAllBreedImages(@Path("breed") breed: String): ResponseMultipleImages
+    suspend fun getAllBreedImages(@Path(value = "breed",encoded = true) breed: String): ResponseMultipleImages
 
-    @GET("breed/{breed}/{subbreed}/images")
-    suspend fun getAllSubbreedImages(@Path("breed") breed : String,
-                                       @Path("subbreed") subbreed : String): ResponseMultipleImages
 }
