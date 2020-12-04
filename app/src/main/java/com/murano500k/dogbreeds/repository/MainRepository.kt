@@ -23,11 +23,9 @@ class MainRepository @Inject constructor(
     fun getAllBreedImagesLiveData(breed: String) = dogBreedDao.getAllBreedImagesLiveData(breed)
 
     suspend fun fetchUpdatedDogBreedsList(){
-        if(dogBreedDao.getDogBreedList().isEmpty()){
-            dogBreedDao.insertDogBreedList(parseListBreeds(apiService.getAllBreeds()))
-        }
-        dogBreedDao.getDogBreedList().forEach{
+        parseListBreeds(apiService.getAllBreeds()).forEach{
             it.imageUrl = fetchRandomBreedImageUrl(it)
+            Log.w(TAG, "imageUrl="+it.imageUrl)
             dogBreedDao.insertDogBreed(it)
         }
     }
@@ -43,7 +41,7 @@ class MainRepository @Inject constructor(
     suspend fun getAllBreedImages(dogBreed: DogBreed): List<DogBreed>{
         val responseMultipleImages = apiService.getAllBreedImages(dogBreed.breed)
         if(responseMultipleImages.status=="success"){
-            val list = responseMultipleImages.message.map { DogBreed(0,dogBreed.breed, it) }
+            val list = responseMultipleImages.message.map { DogBreed(dogBreed.breed, it) }
             dogBreedDao.insertDogBreedList(list)
             return list
         }else {
@@ -65,13 +63,13 @@ class MainRepository @Inject constructor(
     private fun getDogBreedsTest(): List<DogBreed> {
         val list = ArrayList<DogBreed>()
 
-        list.add(DogBreed(0,"affenpinscher", ""))
-        list.add(DogBreed(0,"african", ""))
-        list.add(DogBreed(0,"akita", ""))
-        list.add(DogBreed(0,"australian", "shepherd"))
-        list.add(DogBreed(0,"bulldog", "boston"))
-        list.add(DogBreed(0,"bulldog", "english"))
-        list.add(DogBreed(0,"boxer", ""))
+        list.add(DogBreed("affenpinscher", ""))
+        list.add(DogBreed("african", ""))
+        list.add(DogBreed("akita", ""))
+        list.add(DogBreed("australian", "shepherd"))
+        list.add(DogBreed("bulldog", "boston"))
+        list.add(DogBreed("bulldog", "english"))
+        list.add(DogBreed("boxer", ""))
 
         return list
     }

@@ -19,10 +19,10 @@ class TypeConverter {
 
                         val fullBreedName = "$breed/${subbreed.asString}"
                         Log.w(TAG, "        fullBreedName: $fullBreedName" )
-                        list.add(DogBreed(0, fullBreedName,""))
+                        list.add(DogBreed(fullBreedName,""))
                     }
                 }else{
-                    list.add(DogBreed(0, breed, ""))
+                    list.add(DogBreed(breed, ""))
                 }
 
             }

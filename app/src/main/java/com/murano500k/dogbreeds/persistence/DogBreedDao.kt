@@ -23,6 +23,7 @@ interface DogBreedDao {
     @Query("SELECT * FROM breed_table ")
     fun getDogBreedListLiveData(): LiveData<List<DogBreed>>
 
+
     @Query("SELECT * FROM breed_table WHERE breed LIKE :breedArg")
     fun getAllBreedImagesLiveData(breedArg: String): LiveData<List<DogBreed>>
 

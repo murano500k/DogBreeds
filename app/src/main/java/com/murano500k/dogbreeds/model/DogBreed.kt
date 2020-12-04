@@ -10,9 +10,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 @Entity(tableName = "breed_table")
-data class DogBreed(@PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") val id: Int,
-                    @ColumnInfo(name = "breed") val breed: String,
-                    @ColumnInfo(name = "imageUrl") var imageUrl : String
+data class DogBreed(@ColumnInfo(name = "breed") val breed: String,
+                    @PrimaryKey @ColumnInfo(name = "imageUrl") var imageUrl : String
 ) : Parcelable {
 
 

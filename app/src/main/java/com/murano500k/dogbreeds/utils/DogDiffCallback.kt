@@ -6,7 +6,7 @@ import com.murano500k.dogbreeds.model.DogBreed
 
 class DogDiffCallback : DiffUtil.ItemCallback<DogBreed>() {
     override fun areItemsTheSame(oldItem: DogBreed, newItem: DogBreed): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem.imageUrl == newItem.imageUrl
     }
 
     override fun areContentsTheSame(oldItem: DogBreed, newItem: DogBreed): Boolean {

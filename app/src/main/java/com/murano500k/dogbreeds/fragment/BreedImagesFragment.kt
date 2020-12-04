@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import com.murano500k.dogbreeds.BreedImagesAdapter
 import com.murano500k.dogbreeds.R
 import com.murano500k.dogbreeds.TAG
@@ -44,7 +45,7 @@ class BreedImagesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        Log.w(TAG, "onCreateView: ", )
         val binding: FragmentBreedImagesBinding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_breed_images, container, false
@@ -52,6 +53,7 @@ class BreedImagesFragment : Fragment() {
 
         val imagesAdapter = BreedImagesAdapter()
 
+        //imagesAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         binding.adapter = imagesAdapter
 
         viewModel.allBreedImagesLiveData.observe(viewLifecycleOwner, Observer {

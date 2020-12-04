@@ -14,10 +14,6 @@ class ListBreedsViewModel @ViewModelInject constructor(
     private val mainRepository: MainRepository
 ) : ViewModel() {
 
-    private var listBreeds: MutableList<DogBreed> = ArrayList<DogBreed>()
-
-    var listBreedsLiveData: MutableLiveData<List<DogBreed>> = MutableLiveData(listBreeds)
-
     val isLoading: ObservableBoolean = ObservableBoolean(false)
     private val _toastLiveData: MutableLiveData<String> = MutableLiveData()
 
@@ -29,7 +25,9 @@ class ListBreedsViewModel @ViewModelInject constructor(
         }
     }
 
-    var listBreedsLiveDataFromDb = mainRepository.getListBreedsLiveData()
+    var listBreedsLiveDataFromDb = mainRepository.getListBreedsLiveData().map {
+        it.distinctBy { item -> item.breed }
+    }
 
 
 }

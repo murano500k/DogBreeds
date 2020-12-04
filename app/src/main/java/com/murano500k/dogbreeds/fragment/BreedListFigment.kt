@@ -41,6 +41,7 @@ class BreedListFigment : Fragment() {
         breedListAdapter = BreedListAdapter()
         binding.adapter = breedListAdapter
         breedsViewModel.listBreedsLiveDataFromDb.observe(viewLifecycleOwner, Observer {
+            
             breedListAdapter.submitList(it)
         })
         return binding.root
