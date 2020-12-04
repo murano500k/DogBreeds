@@ -23,14 +23,18 @@ class MainRepository @Inject constructor(
     fun getAllBreedImagesLiveData(breed: String) = dogBreedDao.getAllBreedImagesLiveData(breed)
 
     suspend fun fetchUpdatedDogBreedsList(){
-        parseListBreeds(apiService.getAllBreeds()).forEach{
-            it.imageUrl = fetchRandomBreedImageUrl(it)
-            Log.w(TAG, "imageUrl="+it.imageUrl)
-            dogBreedDao.insertDogBreed(it)
+        if(dogBreedDao.getAllItemsCount() == 0) {
+            parseListBreeds(apiService.getAllBreeds()).forEach {
+                if (dogBreedDao.getBreedImagesCount(it.breed) == 0) {
+                    it.imageUrl = fetchRandomBreedImageUrl(it)
+                    Log.w(TAG, "imageUrl=" + it.imageUrl)
+                    dogBreedDao.insertDogBreed(it)
+                }
+            }
         }
     }
 
-    suspend fun fetchRandomBreedImageUrl(dogBreed: DogBreed): String{
+    private suspend fun fetchRandomBreedImageUrl(dogBreed: DogBreed): String{
         Log.w(TAG, "fetchRandomBreedImageUrl: "+dogBreed.breed )
         val responseSingleImage = apiService.getBreedRandomImage(dogBreed.breed)
         return if(responseSingleImage.status=="success"){

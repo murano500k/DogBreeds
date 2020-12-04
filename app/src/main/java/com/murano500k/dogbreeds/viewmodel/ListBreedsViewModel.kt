@@ -26,7 +26,7 @@ class ListBreedsViewModel @ViewModelInject constructor(
     }
 
     var listBreedsLiveDataFromDb = mainRepository.getListBreedsLiveData().map {
-        it.distinctBy { item -> item.breed }
+        it.distinctBy { item -> item.breed }.sortedBy { dogBreed -> dogBreed.imageUrl }
     }
 
 
