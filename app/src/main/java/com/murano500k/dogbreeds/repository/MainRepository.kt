@@ -20,6 +20,8 @@ class MainRepository @Inject constructor(
 
     fun getListBreedsLiveData() = dogBreedDao.getDogBreedListLiveData()
 
+    fun getAllBreedImagesLiveData(breed: String) = dogBreedDao.getAllBreedImagesLiveData(breed)
+
     suspend fun fetchUpdatedDogBreedsList(){
         if(dogBreedDao.getDogBreedList().isEmpty()){
             dogBreedDao.insertDogBreedList(parseListBreeds(apiService.getAllBreeds()))
@@ -33,9 +35,6 @@ class MainRepository @Inject constructor(
     suspend fun fetchRandomBreedImageUrl(dogBreed: DogBreed): String{
         Log.w(TAG, "fetchRandomBreedImageUrl: "+dogBreed.breed )
         val responseSingleImage = apiService.getBreedRandomImage(dogBreed.breed)
-            //if(dogBreed.subbreed.isEmpty()) apiService.getBreedRandomImage(dogBreed.breed)
-            //else apiService.getSubbreedRandomImage(dogBreed.breed, dogBreed.subbreed)
-
         return if(responseSingleImage.status=="success"){
             responseSingleImage.message
         }else ""
@@ -43,11 +42,13 @@ class MainRepository @Inject constructor(
 
     suspend fun getAllBreedImages(dogBreed: DogBreed): List<DogBreed>{
         val responseMultipleImages = apiService.getAllBreedImages(dogBreed.breed)
-            //if(dogBreed.subbreed.isEmpty()) apiService.getAllBreedImages(dogBreed.breed)
-            //else apiService.getAllSubbreedImages(dogBreed.breed, dogBreed.subbreed)
-        return if(responseMultipleImages.status=="success"){
-            responseMultipleImages.message.map { DogBreed(0,dogBreed.breed, it) }
-        }else return listOf()
+        if(responseMultipleImages.status=="success"){
+            val list = responseMultipleImages.message.map { DogBreed(0,dogBreed.breed, it) }
+            dogBreedDao.insertDogBreedList(list)
+            return list
+        }else {
+            return listOf()
+        }
     }
 
 

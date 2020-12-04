@@ -34,6 +34,7 @@ class BreedImagesFragment : Fragment() {
 
         val dogBreed: DogBreed? = arguments?.getParcelable(ARG_DOG_BREED)
         dogBreed?.let {
+            viewModel.setSelectedDogBreed(it)
             viewModel.fetchBreedImages(it)
         }
 
@@ -53,7 +54,7 @@ class BreedImagesFragment : Fragment() {
 
         binding.adapter = imagesAdapter
 
-        viewModel.data.observe(viewLifecycleOwner, Observer {
+        viewModel.allBreedImagesLiveData.observe(viewLifecycleOwner, Observer {
             Log.w(TAG, "observe: size= ${it.size}")
             it.let(imagesAdapter::submitList)
         })

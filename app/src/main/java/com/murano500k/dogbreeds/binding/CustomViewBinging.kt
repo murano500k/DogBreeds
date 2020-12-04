@@ -46,14 +46,14 @@ fun bindAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
 @BindingAdapter(value = ["setAdapter"])
 fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
     this.run {
-
+/*
         this.layoutManager = FlexboxLayoutManager(context).apply {
             flexWrap = FlexWrap.WRAP
             flexDirection = FlexDirection.ROW
             //alignItems = AlignItems.STRETCH
             justifyContent = JustifyContent.SPACE_EVENLY
 
-        }
+        }*/
         this.adapter = adapter
     }
 }
