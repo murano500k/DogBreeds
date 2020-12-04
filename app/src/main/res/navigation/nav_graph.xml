@@ -2,12 +2,11 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/listFragment">
+    app:startDestination="@id/breedListFragment">
 
     <fragment
-        android:id="@+id/listFragment"
+        android:id="@+id/breedListFragment"
         android:name="com.murano500k.dogbreeds.fragment.BreedListFigment"
-        android:label="All breeds"
         tools:layout="@layout/fragment_list_breeds" >
         <action
             android:id="@+id/action_listFragment_to_breedImagesFragment"
@@ -18,7 +17,6 @@
     <fragment
         android:id="@+id/breedImagesFragment"
         android:name="com.murano500k.dogbreeds.fragment.BreedImagesFragment"
-        android:label="Breed images"
         tools:layout="@layout/fragment_breed_images" >
         <action
             android:id="@+id/action_breedImagesFragment_to_singleImageFragment"
@@ -29,6 +27,5 @@
     <fragment
         android:id="@+id/singleImageFragment"
         android:name="com.murano500k.dogbreeds.fragment.SingleImageFragment"
-        android:label="Single image"
         tools:layout="@layout/fragment_single_image" />
 </navigation>

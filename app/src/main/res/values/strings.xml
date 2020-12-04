@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">DogBreeds</string>
+    <string name="allbreeds">All breeds</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

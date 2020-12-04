@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout.VERTICAL
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
@@ -28,7 +29,6 @@ fun ImageView.bindImageUrl(url: String?) {
             .centerCrop()
             .apply(
                 RequestOptions()
-
                     .placeholder(R.drawable.ic_baseline_hourglass_empty_24)
                     .error(R.drawable.ic_baseline_broken_image_24)
             )
@@ -36,6 +36,24 @@ fun ImageView.bindImageUrl(url: String?) {
     }
 }
 
+@SuppressLint("WrongConstant")
+@BindingAdapter(value = ["setImageUrlSingle"])
+fun ImageView.bindImageUrlSingle(url: String?) {
+    if (url != null && url.isNotBlank()) {
+
+
+        Glide.with(context)
+            .load(url)
+            .fitCenter()
+            .apply(
+                RequestOptions()
+
+                    .placeholder(R.drawable.ic_baseline_hourglass_empty_24)
+                    .error(R.drawable.ic_baseline_broken_image_24)
+            )
+            .into(this)
+    }
+}
 
 @BindingAdapter("adapter")
 fun bindAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
@@ -54,6 +72,11 @@ fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>) {
             justifyContent = JustifyContent.SPACE_EVENLY
 
         }*/
+
+        this.layoutManager = LinearLayoutManager(context).apply {
+            orientation = VERTICAL
+
+        }
         this.adapter = adapter
     }
 }

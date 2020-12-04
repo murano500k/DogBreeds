@@ -1,5 +1,6 @@
 package com.murano500k.dogbreeds.model
 
+import android.net.Uri
 import android.os.Parcelable
 import android.util.Log
 import androidx.room.ColumnInfo
@@ -20,6 +21,10 @@ data class DogBreed(@ColumnInfo(name = "breed") val breed: String,
             val array = breed.split("/")
             "${array[1]} ${array[0]}"
         }else breed
+    }
+
+    fun getImageName(): String {
+        return Uri.parse(imageUrl).lastPathSegment ?: "null"
     }
 
 }

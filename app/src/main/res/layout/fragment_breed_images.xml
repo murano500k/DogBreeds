@@ -49,8 +49,8 @@
             android:scrollbarThumbVertical="@drawable/scrollbar"
             android:scrollbars="vertical"
             app:adapter="@{adapter}"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

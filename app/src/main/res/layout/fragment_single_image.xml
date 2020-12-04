@@ -23,7 +23,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            setImageUrl="@{dogBreed.imageUrl}"
+            setImageUrlSingle="@{dogBreed.imageUrl}"
             tools:src="@tools:sample/backgrounds/scenic" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -53,7 +53,7 @@ class BreedImagesFragment : Fragment() {
 
         val imagesAdapter = BreedImagesAdapter()
 
-        //imagesAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+        imagesAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         binding.adapter = imagesAdapter
 
         viewModel.allBreedImagesLiveData.observe(viewLifecycleOwner, Observer {
